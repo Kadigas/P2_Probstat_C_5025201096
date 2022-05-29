@@ -9,7 +9,7 @@ print(stDev)
 t.test(x,y,paired = TRUE)
 
 #c
-#Didapat p-value = 6.003e-05, maka H0 "tidak ada pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas ????"
+#Didapat p-value = 6.003e-05 mendekati 0, maka H0 "tidak ada pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas A"
 #ditolak sehingga H1 diterima
 
 #2
@@ -35,7 +35,7 @@ zsum.test(mean.x = 23500, sigma.x = 3900, n.x = 100, alternative = "less", mu = 
 
 #b
 tsum.test(mean.x = 3.64, s.x = 1.67, n.x = 19, mean.y = 2.79, s.y = 1.32, n.y = 27, alternative = "greater", 
-          mu = 0, var.equal = TRUE, conf.level = 0.90)
+          mu = 0, var.equal = TRUE, conf.level = 0.95)
 
 #c
 install.packages("mosaic")
