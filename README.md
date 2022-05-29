@@ -112,6 +112,32 @@ Seorang Peneliti sedang meneliti spesies dari kucing di ITS . Dalam penelitianny
 ##### H0 : Tidak ada perbedaan panjang antara ketiga spesies atau rata-rata panjangnya sama
 Maka Kerjakan atau Carilah:
 #### A. Buatlah masing masing jenis spesies menjadi 3 subjek "Grup" (grup 1,grup 2,grup 3). Lalu Gambarkan plot kuantil normal untuk setiap kelompok dan lihat apakah ada outlier utama dalam homogenitas varians.
+
+```R
+my_data <- read.table("onewayanova.txt", h = T)
+attach(my_data)
+names(my_data)
+
+my_data$Group = as.factor(my_data$Group)
+my_data$Group = factor(my_data$Group,labels = c("kucing oren", "kucing hitam", "kucing putih"))
+
+class(my_data$Group)
+
+Grup1 = subset(my_data, Group == "kucing oren")
+Grup2 = subset(my_data, Group == "kucing hitam")
+Grup3 = subset(my_data, Group == "kucing putih")
+
+qqnorm(Grup1$Length)
+qqline(Grup1$Length)
+
+qqnorm(Grup2$Length)
+qqline(Grup2$Length)
+
+qqnorm(Grup3$Length)
+qqline(Grup3$Length)
+```
+<img src="/Screenshots/4a.png">
+          
 #### B. carilah atau periksalah Homogeneity of variances nya , Berapa nilai p yang didapatkan? , Apa hipotesis dan kesimpulan yang dapat diambil ?
 #### C. Untuk uji ANOVA (satu arah), buatlah model linier dengan Panjang versus Grup dan beri nama model tersebut model 1.
 #### D. Dari Hasil Poin C, Berapakah nilai-p ? , Apa yang dapat Anda simpulkan dari H0?
