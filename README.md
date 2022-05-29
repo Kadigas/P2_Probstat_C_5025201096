@@ -14,16 +14,55 @@ melakukan aktivitas 𝐴 sebanyak 70.
 
 #### a. Carilah Standar Deviasi dari data selisih pasangan pengamatan tabel diatas
 
+```R
+x <- c(78,75,67,77,70,72,78,74,77)
+y <- c(100,95,70,90,90,90,89,90,100)
+stDev <- sd(x-y)
+print(stDev)
+```
+
+<img src="/Screenshots/1a.png">
+
 #### b. carilah nilai t (p-value)
 
+```R
+t.test(x,y,paired = TRUE)
+```
+
+<img src="/Screenshots/1b.png">
+
 #### c. tentukanlah apakah terdapat pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴 jika diketahui tingkat signifikansi 𝛼 = 5% serta H0 : “tidak ada pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴”
+
+Didapat p-value = 6.003e-05 mendekati 0, maka H0 "tidak ada pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas A" ditolak sehingga H1 diterima
 
 ### Soal 2
 Diketahui bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun. Untuk menguji klaim ini, 100 pemilik mobil yang dipilih secara acak diminta untuk mencatat jarak yang mereka tempuh. Jika sampel acak menunjukkan rata-rata 23.500 kilometer dan standar deviasi 3900 kilometer. (Kerjakan menggunakan library seperti referensi pada modul).
 
+```R
+library(BSDA)
+```
+
 #### a. Apakah Anda setuju dengan klaim tersebut?
+
+Setuju karena kesimpulan dari uji z menunjukkan rata-rata 23.500 menolak H0 "mobil dikemudikan rata-rata tidak lebih dari 20.000 kilometer per tahun."  sehingga mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun
+
 #### b. Jelaskan maksud dari output yang dihasilkan!
+
+```R
+zsum.test(mean.x = 23500, sigma.x = 3900, n.x = 100, alternative = "less", mu = 20000)
+```
 #### c. Buatlah kesimpulan berdasarkan P-Value yang dihasilkan!
+
+Diketahui:
+
+P(Z > 8.97) = 1 - P(Z < 8.97)
+
+<=> 1-1
+
+<=> 0
+
+maka H0 ditolak sehingga kesimpulannya adalah mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun.
+
 
 ### Soal 3
 Diketahui perusahaan memiliki seorang data analyst ingin memecahkan permasalahan pengambilan keputusan dalam perusahaan tersebut. Selanjutnya didapatkanlah data berikut dari perusahaan saham tersebut:
@@ -33,11 +72,39 @@ Diketahui perusahaan memiliki seorang data analyst ingin memecahkan permasalahan
 Dari data diatas berilah keputusan serta kesimpulan yang didapatkan dari hasil diatas. Asumsikan nilai variancenya sama, apakah ada perbedaan pada rata-ratanya (α= 0.05)? Buatlah :
 
 #### A. H0 dan H1
+H0 = rata-rata saham di Bandung tidak berbeda dengan rata-rata saham di Bali
+
+H1 = rata-rata saham di Bandung berbeda dengan rata-rata saham di Bali
+
 #### B. Hitung Sampel Statistik
+
+```R
+tsum.test(mean.x = 3.64, s.x = 1.67, n.x = 19, mean.y = 2.79, s.y = 1.32, n.y = 27, alternative = "greater", 
+          mu = 0, var.equal = TRUE, conf.level = 0.95)
+```
+<img src="/Screenshots/3b.png">
+
 #### C. Lakukan Uji Statistik (df =2)
+
+```R
+install.packages("mosaic")
+library(mosaic)
+plotDist(dist ='t', df = 2, col="magenta")
+```
+<img src="/Screenshots/3c.png">
+
 #### D. Nilai Kritikal
+
+```R
+qchisq(p = 0.05, df = 2, lower.tail=FALSE)
+```
+<img src="/Screenshots/3d.png">
+
 #### E. Keputusan
+Dari hasil t-test didapatkan p-value < a. Maka H0 ditolak dan terima H1.
+
 #### F. Kesimpulan
+Kesimpulannya rata-rata saham di Bandung berbeda dengan rata-rata saham di Bali.
 
 ### Soal 4
 Seorang Peneliti sedang meneliti spesies dari kucing di ITS . Dalam penelitiannya ia mengumpulkan data tiga spesies kucing yaitu kucing oren, kucing hitam dan kucing putih dengan panjangnya masing-masing. Jika :
