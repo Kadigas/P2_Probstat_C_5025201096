@@ -50,3 +50,26 @@ qchisq(p = 0.05, df = 2, lower.tail=FALSE)
 
 #f
 #Kesimpulannya rata-rata saham di Bandung berbeda dengan rata-rata saham di Bali.
+
+#4
+my_data <- read.table("onewayanova.txt", h = T)
+attach(my_data)
+names(my_data)
+
+my_data$Group = as.factor(my_data$Group)
+my_data$Group = factor(my_data$Group,labels = c("kucing oren", "kucing hitam", "kucing putih"))
+
+class(my_data$Group)
+
+Grup1 = subset(my_data, Group == "kucing oren")
+Grup2 = subset(my_data, Group == "kucing hitam")
+Grup3 = subset(my_data, Group == "kucing putih")
+
+qqnorm(Grup1$Length)
+qqline(Grup1$Length)
+
+qqnorm(Grup2$Length)
+qqline(Grup2$Length)
+
+qqnorm(Grup3$Length)
+qqline(Grup3$Length)
